@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Emails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Send Emails</h1>
+        <button onclick="sendEmails()">Send Emails</button>
+    </div>
+
+    <script>
+        function sendEmails() {
+        console.log(sendEmails)
+            fetch('https://ovzflo9m2b.execute-api.us-west-1.amazonaws.com/newStage', {
+                mode: 'no-cors',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'POST,OPTIONS'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`This is an HTTP error: The status is ${response.status}`);
+                    }
+                    return response.json(); // Assuming you want to process the response
+                })
+                .then(data => {
+                    alert('Emails are being sent.');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to trigger email sending.');
+                });
+        }
+
+    </script>
+</body>
+
+</html>
